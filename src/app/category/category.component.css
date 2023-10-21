@@ -1,0 +1,38 @@
+
+ 
+ .category .box-container{
+    display:flex;
+    gap: .1rem;
+    flex-wrap: wrap;
+    padding: 1rem;
+    
+
+}
+
+
+.category .box-container .box{
+    border: .1rem solid rgba(0,0,0,.3);
+    border-radius: .5rem;
+    text-align: center;
+    padding:1rem;
+   
+    
+}
+
+.category .box-container .box img{
+    width: 15rem;
+    margin: .5rem 0;
+    object-fit: scale-down;
+
+}
+
+.category .box-container .box h3{
+    font-size: 2rem;
+    color: #444;
+}
+
+.category .box-container .box .btn{
+   display: block;
+
+}
+

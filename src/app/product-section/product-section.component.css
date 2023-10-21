@@ -1,0 +1,85 @@
+.product .box-container{
+
+    display: flex;
+    gap: .1rem;
+    flex-wrap: wrap;
+    padding: 0.5rem;
+}  
+
+.product .box-container .box{
+    border: .1rem solid rgba(0,0,0,.3);
+    border-radius: .5rem;
+    text-align: center;
+    padding:0.5rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.product .box-container .box img{
+    
+    height: 10rem;
+    padding: .5rem;
+
+}
+
+.product .box-container .box h3{
+    font-size: 2rem;
+    color: var(--black);
+}
+
+
+.product .box-container .box .icons{
+    position:absolute;
+    right:1rem;
+    
+}
+
+.product .box-container .box .icons a{
+    display:block;
+    height: 2.5rem;
+    width:2.5rem;
+    line-height: 2.5rem;
+    font-size: 1rem;
+    color: var(--black);
+    background: rgba(119, 50, 127, 0.1);
+    border-radius: 50%;
+    margin-top: .5rem;
+}
+
+.product .box-container .box .icons a:hover{
+    background: var(--purple);
+    color:#fff;
+}
+
+.product .box-container .box .btn{
+   display: block;
+
+}
+
+.product .box-container .box .price{
+    font-size: 2rem;
+    color: #333;
+    padding: .5rem 0;
+}
+
+.product .box-container .box .quantity{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+
+.product .box-container .box .quantity span{
+    padding: 0 .7rem;
+    font-size: 1.2rem;
+}
+
+.product .box-container .box .quantity input{
+    border: .1rem solid rgba(0,0,0,.3);
+    font-size: 1.2rem;
+    font-weight: bolder;
+    color: var(--black);
+    padding:.5rem;
+    background: rgba(119, 50, 127, 0.1);
+}
