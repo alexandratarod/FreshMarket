@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "PW-Online-Shop",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}
