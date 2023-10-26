@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "freshmarket-d0661": {
+      "hosting": {
+        "PW-Online-Shop": [
+          "freshmarket-d0661"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "freshmarket-d0661"
+  }
+}

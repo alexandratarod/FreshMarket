@@ -1,10 +1,9 @@
 .login-form-container{
+    
     display: flex;
     align-items: center;
     justify-content: center;
     background: rgba(255,255,255, .9);
-    position: fixed;
-    z-index: 10000;
     height: 100%;
     width: 100%;
 
@@ -16,10 +15,10 @@
 
 .login-form-container form{
     background: #fff;
-    border: .1rem solid rgba(0,0,0,.1);
+    border: .1rem solid rgba(0,0,0,.1);;
     width: 40rem;
     padding:2rem;
-    box-shadow:0 .5rem 1rem rgba(0,0,0,.1);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
     border-radius: .5rem;
     margin: 2rem;
 
@@ -79,7 +78,7 @@
 .login-form-container form p a{
     color:indigo;
     text-decoration: underline;
-    padding-left: .5rem;
+    padding: .5rem;
 }
 
 .login-form-container #close-login-btn{
@@ -89,4 +88,3 @@
     color: #444;
     cursor: pointer;
 }
-

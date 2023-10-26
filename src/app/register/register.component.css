@@ -1,11 +1,8 @@
-
 .register-form-container{
     display: flex;
     align-items: center;
     justify-content: center;
     background: rgba(255,255,255, .9);
-    position: fixed;
-    z-index: 10000;
     height: 100%;
     width: 100%;
 
