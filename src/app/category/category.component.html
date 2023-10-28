@@ -2,18 +2,17 @@
 <section class="category" id="category">
 
     <h1 class="heading">shop by <span>category</span></h1>
-    <a href="#" class="btn3">create category</a> 
+    <a  *ngIf="isAdmin" href="create-category" class="btn3">create category</a> 
+    
     <div class="box-container">
-
-        <div class="box">
-            <h3>vegetables</h3>
-            <img src="../../assets/category-1.png" alt="">
-            <a href="#" class="btn"> shop now</a>
-            <a href="#" class="btn1">update</a>
-            <a href="#" class="btn2">delete</a>
+        <div *ngFor="let category of categories" class="box">
+          <h3>{{ category.name }}</h3>
+          <img [src]="category.photo" alt="{{ category.name }}">
+          <a href="products" class="btn">Shop Now</a>
+          <a  *ngIf="isAdmin" class="btn1" (click)="prepareUpdate(category.name)">Update</a>
+          <a  *ngIf="isAdmin" class="btn2" (click)="deleteCategory(category.name)">Delete</a>
         </div>
-        
-    </div>
-   
+      </div>
+
 </section>
 

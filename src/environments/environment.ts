@@ -1,8 +1,10 @@
 export const environment = {
+  
   production : false,
   firebaseConfig: {
     apiKey: "AIzaSyDhxtTxqTLaynMXt-BTE2bZfLHU_z-SUJk",
     authDomain: "freshmarket-1453b.firebaseapp.com",
+    databaseURL: "https://freshmarket-1453b-default-rtdb.firebaseio.com",
     projectId: "freshmarket-1453b",
     storageBucket: "freshmarket-1453b.appspot.com",
     messagingSenderId: "525634027927",

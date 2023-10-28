@@ -10,33 +10,30 @@ import { ProductSectionComponent } from './product-section/product-section.compo
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
-import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
+import { provideFirebaseApp, getApp, initializeApp, FirebaseAppModule } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { CartComponent } from './cart/cart.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 
-import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireModule, FirebaseApp } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { provideAuth,getAuth, signInWithPopup } from '@angular/fire/auth';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './services/auth.service';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { CategoryCardComponent } from './category-card/category-card.component';
+import { CreateCategoryComponent } from './create-category/create-category.component';
+import { CreateCategoryService } from './create-category.service';
+import { FirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule} from '@angular/fire/compat/storage';
+import { UpdateCategoryComponent } from './update-category/update-category.component'
 
 
-/*const firebaseConfig = {
-  apiKey: "AIzaSyC3Ez2C5kSJ8s3jdbLBDiC18ddAMmVrmG4",
-  authDomain: "freshmarket-d0661.firebaseapp.com",
-  projectId: "freshmarket-d0661",
-  storageBucket: "freshmarket-d0661.appspot.com",
-  messagingSenderId: "635418123047",
-  appId: "1:635418123047:web:046630c957d5d24565a702",
-  measurementId: "G-8W3SVRGCP2"
-};
 
-*/
+
 
 
 
@@ -46,18 +43,20 @@ const appRoutes: Routes = [
     {path:'', component:HomeSectionComponent},
     {path:'products', component:ProductSectionComponent},
     {path:'category', component:CategoryComponent},
+    {path:'category-card', component:CategoryCardComponent},
+    {path:'create-category', component:CreateCategoryComponent},
     {path:'login', component:LoginComponent},
     {path:'register', component:RegisterComponent},
     {path:'wishlist', component:WishlistComponent},
     {path:'cart', component:CartComponent},
+    {path:'update-category-component', component:UpdateCategoryComponent},
+
   
 
   
 ]
 
 
-
-//const app = initializeApp(firebaseConfig)
 
 @NgModule({
   declarations: [
@@ -70,28 +69,33 @@ const appRoutes: Routes = [
     RegisterComponent,
     CartComponent,
     WishlistComponent,
+    CategoryCardComponent,
+    CreateCategoryComponent,
+    UpdateCategoryComponent,
+    
 
   ],
   imports: [
-    
     BrowserModule,
-    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
     AngularFireModule,
-    provideFirebaseApp(() => getApp()),
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()),
+    provideFirebaseApp(() => getApp()),
     AngularFireAuthModule,
-    ReactiveFormsModule,
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
+    FirestoreModule,
+    AngularFireStorageModule
+   
+    
   ],
-  providers: [AuthService],
+  providers: [AuthService, CreateCategoryService,],
   bootstrap: [AppComponent]
 })
 
 
-
 export class AppModule { }
 
-platformBrowserDynamic().bootstrapModule(AppModule).catch(err => console.error(err));

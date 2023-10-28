@@ -6,9 +6,16 @@
           "freshmarket-d0661"
         ]
       }
+    },
+    "freshmarket-1453b": {
+      "hosting": {
+        "PW-Online-Shop": [
+          "freshmarket-1453b"
+        ]
+      }
     }
   },
   "projects": {
-    "default": "freshmarket-d0661"
+    "default": "freshmarket-1453b"
   }
 }

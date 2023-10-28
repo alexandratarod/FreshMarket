@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   constructor(private afs: AngularFireAuth) {
-    // Nu mai avem nevoie de this.afs.onAuthStateChanged aici
+    
   }
 
   registerWithEmailAndPassword(user: { email: string, password: string }) {
@@ -28,8 +29,23 @@ export class AuthService {
     return localStorage.getItem('isLoggedIn') === 'true';
   }
 
-  isAdmin(user: { email: string }): boolean {
-    return user.email.endsWith("@freshmarket.com");
+  async getAuthenticatedUserEmail(): Promise<string | null> {
+    const user = await this.afs.currentUser;
+    if (user) {
+      return user.email || null;
+    }
+    return null;
   }
-  
+
+  isAdmin(): Observable<boolean> {
+    return this.afs.authState.pipe(
+      map(user => {
+        if (user && user.email) {
+          return user.email.endsWith("@freshmarket.com");
+        }
+        return false; 
+      })
+    );
+
+}
 }

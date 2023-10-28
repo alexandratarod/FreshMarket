@@ -1,0 +1,13 @@
+<div class="create-category-form-container">
+    
+    <a href="category" id="close-create-category-btn" class="fas fa-times"></a>
+
+    <form [formGroup]="createCategoryForm" (submit)="createCategory()">
+      <h3>Create Category</h3>
+      <input formControlName="name" matInput type="text" class="box" placeholder="Category name">
+      <input type="file" formControlName="photo" class="box" (change)="onFileChange($event)">
+      <button type="submit" class="btn">Create Category</button>
+   </form>
+   
+  </div>
+  
