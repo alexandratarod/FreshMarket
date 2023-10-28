@@ -1,0 +1,12 @@
+<div class="update-category-form-container">
+    
+    <a href="category" id="close-update-category-btn" class="fas fa-times"></a>
+
+    <form [formGroup]="updateCategoryForm" (submit)="updateCategory()" >
+      <h3>Update Category</h3>
+      <input formControlName="name" matInput type="text" class="box" placeholder="Category name">
+      <input type="file" formControlName="photo" (change)="onFileChange($event)" class="box" >
+      <button  type="submit" class="btn" >Update Category</button>
+   </form>
+   
+  </div>
