@@ -29,13 +29,6 @@ export class AuthService {
     return localStorage.getItem('isLoggedIn') === 'true';
   }
 
-  async getAuthenticatedUserEmail(): Promise<string | null> {
-    const user = await this.afs.currentUser;
-    if (user) {
-      return user.email || null;
-    }
-    return null;
-  }
 
   isAdmin(): Observable<boolean> {
     return this.afs.authState.pipe(
