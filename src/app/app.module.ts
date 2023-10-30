@@ -29,7 +29,9 @@ import { CreateCategoryComponent } from './create-category/create-category.compo
 import { CreateCategoryService } from './create-category.service';
 import { FirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule} from '@angular/fire/compat/storage';
-import { UpdateCategoryComponent } from './update-category/update-category.component'
+import { UpdateCategoryComponent } from './update-category/update-category.component';
+import { CreateProductComponent } from './create-product/create-product.component';
+import { UpdateProductComponent } from './update-product/update-product.component'
 
 
 
@@ -50,6 +52,8 @@ const appRoutes: Routes = [
     {path:'wishlist', component:WishlistComponent},
     {path:'cart', component:CartComponent},
     {path:'update-category-component', component:UpdateCategoryComponent},
+    {path:'create-product', component:CreateProductComponent},
+    {path:'update-product-component', component:UpdateProductComponent},
 
   
 
@@ -72,6 +76,8 @@ const appRoutes: Routes = [
     CategoryCardComponent,
     CreateCategoryComponent,
     UpdateCategoryComponent,
+    CreateProductComponent,
+    UpdateProductComponent,
     
 
   ],

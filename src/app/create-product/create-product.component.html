@@ -1,0 +1,14 @@
+<div class="create-product-form-container">
+    
+    <a href="products" id="close-create-product-btn" class="fas fa-times"></a>
+
+    <form [formGroup]="createProductForm" (submit)="createProduct()">
+      <h3>Create Product</h3>
+      <input formControlName="productname" matInput type="text" class="box" placeholder="Product name">
+      <input formControlName="productprice" matInput type="text" class="box" placeholder="Price">
+      <input type="file" formControlName="productphoto" class="box" (change)="onFileChange($event)">
+      <input formControlName="productcategory" matInput type="text" class="box" placeholder="Product Category">
+      <button type="submit" class="btn">Create Product</button>
+   </form>
+   
+  </div>

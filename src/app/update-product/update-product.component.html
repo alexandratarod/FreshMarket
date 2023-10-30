@@ -1,0 +1,14 @@
+<div class="update-product-form-container">
+    
+    <a href="products" id="close-update-product-btn" class="fas fa-times"></a>
+
+    <form [formGroup]="updateProductForm" (submit)="updateProduct()" >
+      <h3>Update Product</h3>
+      <input formControlName="productname" matInput type="text" class="box" placeholder="Product name">
+      <input type="file" formControlName="productphoto" (change)="onFileChange($event)" class="box" >
+      <input formControlName="productprice" matInput type="text" class="box" placeholder="Product price">
+      <input formControlName="productcategory" matInput type="text" class="box" placeholder="Product category">
+      <button  type="submit" class="btn" >Update Product</button>
+   </form>
+   
+  </div>
