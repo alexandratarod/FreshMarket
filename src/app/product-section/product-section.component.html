@@ -2,22 +2,21 @@
 <section class="product" id="product">
 
     <h1 class="heading"> our <span>products</span></h1>
-    <a href="#" class="btn3">create product</a> 
+    <a *ngIf="isAdmin"   href="create-product" class="btn3">create product</a> 
     <div class="box-container">
         
-        <div class="box">
         
+         <div *ngFor="let product of products" class="box">
             <div class="icons">
                 <a href="#" class="fas fa-heart"></a>
-                <a href="#" class="fas fa-share"></a>
-                <a href="#" class="fas fa-eye"></a>
             </div>
-
-            <img src="../../assets/product-1.png" alt="">
-            <h3>banana</h3>
+            
+            
+            <img [src]="product.photo" alt="{{ product.name }}">
+            <h3>{{ product.name }}</h3>
 
             <div class="price">
-                <span> $13.2</span>
+                <span> {{product.price}}$</span>
             </div>
 
             <div class="quantity">
@@ -27,8 +26,9 @@
             </div>
 
             <a href="#" class="btn">add to cart</a>
-            <a href="#" class="btn1">update</a>
-            <a href="#" class="btn2">delete</a>
+            <a *ngIf="isAdmin" (click)="prepareUpdate(product.name)" class="btn1">update</a>
+            <a *ngIf="isAdmin" (click)="deleteProduct(product)" class="btn2">delete</a>
+
             
         </div>
      </div>
