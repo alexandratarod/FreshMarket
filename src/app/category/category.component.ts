@@ -53,6 +53,9 @@ export class CategoryComponent implements OnInit {
     this.router.navigate(['/update-category-component', { categoryName: categoryName }]);
   }
 
+  categoryName(categoryName: any){
+    this.router.navigate(['/view-products-bt-category-component', { categoryName: categoryName }]);
+  }
   
 }
 
