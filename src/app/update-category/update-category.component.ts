@@ -10,53 +10,75 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
   styleUrls: ['./update-category.component.css']
 })
 export class UpdateCategoryComponent implements OnInit {
-  updateCategoryForm: FormGroup;
+  updateCategoryForm!: FormGroup;
   categoryName: string = '';
-
+  categoryPhoto: string = '';
+  existingPhotoUrl: string = '';
+  
   constructor(
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private firestore: AngularFirestore,
     private fireStorage: AngularFireStorage
-  ) {
-    this.updateCategoryForm = this.fb.group({
-      name: new FormControl('', [Validators.required]),
-      photo: new FormControl(null, [Validators.required]),
-      
-    });
-  }
+  )  {}
+  
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
+    this.activatedRoute.queryParams.subscribe(params => {
       this.categoryName = params['categoryName'];
+      this.categoryPhoto = params['categoryPhoto'];
+      this.initForm();
     });
 
-    // Încărcați datele curente ale categoriei, dacă este necesar
-    this.firestore.collection('categories').doc(this.categoryName).valueChanges().subscribe((category: any) => {
-      if (category) {
-        this.updateCategoryForm.setValue(category); 
-      }
-    });
   }
 
+  initForm() {
+    this.updateCategoryForm = this.fb.group({
+      name: [this.categoryName , [Validators.required]],
+      photo: [null , [Validators.required]],
+    });
+  }
+    
+
+
   async updateCategory() {
+    
     const photoControl = this.updateCategoryForm.get('photo');
-    if (photoControl && photoControl.value) {
-      const file = photoControl.value;
+    let updatedData: { name: string, photo: string }; 
 
-      const path = `fresh-market-category/${file.name}`;
-      const uploadTask = await this.fireStorage.upload(path, file);
-      const url = await uploadTask.ref.getDownloadURL();
+   
+      
+  if (photoControl && photoControl.value) {
+    const file = photoControl.value;
+    const path = `fresh-market-category/${file.name}`;
+    const uploadTask = await this.fireStorage.upload(path, file);
+    const url = await uploadTask.ref.getDownloadURL();
+    
+    
+     
+     updatedData = {
+       name: this.updateCategoryForm.value.name,
+       photo: url 
+     };
+     
+  }
+  else{
 
-      const updatedData = {
-        name: this.updateCategoryForm.value.name,
-        photo: url, // Store the download URL as a string
-      };
+    const oldurl=this.categoryPhoto;
+    updatedData = {
+      name: this.updateCategoryForm.value.name,
+      photo: oldurl,
+     
+    };
 
-      console.log('URL of the updated image:', url);
+  }
 
-      // Parcurgeți colecția de categorii pentru a găsi categoria cu numele specificat
+  
+
+  
+
+    
       this.firestore.collection('categories', ref => ref.where('name', '==', this.categoryName)).get()
         .subscribe(querySnapshot => {
           querySnapshot.forEach(doc => {
@@ -77,7 +99,8 @@ export class UpdateCategoryComponent implements OnInit {
     }
     
 
-  }
+  
+
 
   async onFileChange(event: any) {
     const file = event.target.files[0];

@@ -48,14 +48,13 @@ export class CategoryComponent implements OnInit {
     this.categoryService.deleteCategory(categoryName);
   }
 
-  prepareUpdate(categoryName: any) {
-    console.log('Category Name:', categoryName);
-    this.router.navigate(['/update-category-component', { categoryName: categoryName }]);
+  prepareUpdate(categoryName: string, categoryPhoto: string) {
+    this.router.navigate(['/update-category-component'], {
+      queryParams: { categoryName: categoryName, categoryPhoto: categoryPhoto }
+    });
   }
 
-  categoryName(categoryName: any){
-    this.router.navigate(['/view-products-bt-category-component', { categoryName: categoryName }]);
-  }
+
   
 }
 
