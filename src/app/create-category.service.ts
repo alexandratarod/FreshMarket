@@ -38,7 +38,7 @@ export class CreateCategoryService {
     });
   }
 
-updateCategory(categoryName : string, newData : { name: string, photo: ImageData } ) {
+updateCategory(categoryName : string, newData : { name: string, photo: string } ) {
   const categoriesCollection = collection(this.firestore, 'categories');
   const queryByName = query(categoriesCollection, where('name', '==', categoryName));
 

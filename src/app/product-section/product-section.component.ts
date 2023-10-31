@@ -61,12 +61,9 @@ export class ProductSectionComponent {
     }
 
 
-    prepareUpdate(productName: any) {
-      
-      this.router.navigate(['/update-product-component', { productName: productName}]);
+    prepareUpdate(productName: string, productPhoto: string, productPrice: string, productCategory: string) {
+      this.router.navigate(['/update-product-component'], {
+        queryParams: { productName: productName, productPhoto: productPhoto, productPrice:productPrice, productCategory:productCategory }
+      });
     }
-  }
-  
-
-
-
+}

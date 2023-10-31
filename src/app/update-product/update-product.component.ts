@@ -10,8 +10,11 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
   styleUrls: ['./update-product.component.css']
 })
 export class UpdateProductComponent implements OnInit {
-  updateProductForm: FormGroup;
+  updateProductForm!: FormGroup;
   productName: string = '';
+  productPhoto: string = '';
+  productPrice: string = '';
+  productCategory: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -19,24 +22,25 @@ export class UpdateProductComponent implements OnInit {
     private router: Router,
     private firestore: AngularFirestore,
     private fireStorage: AngularFireStorage
-  ) {
-    this.updateProductForm = this.fb.group({
-      productname: new FormControl('', [Validators.required]),
-      productphoto: new FormControl(null, [Validators.required]),
-      productprice: new FormControl('', [Validators.required]),
-      productcategory: new FormControl('', [Validators.required]),
+  ) {}
+  
+
+  ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.productName = params['productName'];
+      this.productPhoto = params['productPhoto'];
+      this.productPrice = params['productPrice'];
+      this.productCategory = params['productCategory'];
+      this.initForm();
     });
   }
 
-  ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
-      this.productName = params['productName']});
-
-    // Load the current data of the product, if necessary
-    this.firestore.collection('products').doc(this.productName).valueChanges().subscribe((product: any) => {
-      if (product) {
-        this.updateProductForm.setValue(product); 
-      }
+  initForm(): void{
+    this.updateProductForm = this.fb.group({
+      productname: new FormControl(this.productName, [Validators.required]),
+      productphoto: new FormControl(null, [Validators.required]),
+      productprice: new FormControl(this.productPrice, [Validators.required]),
+      productcategory: new FormControl(this.productCategory, [Validators.required]),
     });
   }
 
@@ -44,21 +48,37 @@ export class UpdateProductComponent implements OnInit {
 
     
     const photoControl = this.updateProductForm.get('productphoto');
+    let updatedData: { name: string, photo: string, price:string, category:string };
+    
+
     if (photoControl && photoControl.value) {
       const file = photoControl.value;
-
-      const path = `product-photos/${file.name}`;
+      const path = `fresh-market-category/${file.name}`;
       const uploadTask = await this.fireStorage.upload(path, file);
       const url = await uploadTask.ref.getDownloadURL();
-      console.log(url);
-      const updatedData = {
+      
+      
+       
+       updatedData = {
         name: this.updateProductForm.value.productname,
         photo: url, 
         price: this.updateProductForm.value.productprice,
         category: this.updateProductForm.value.productcategory,
+       };
+       
+    }
+    else{
+  
+      const oldurl=this.productPhoto;
+      updatedData = {
+        name: this.updateProductForm.value.productname,
+        photo: oldurl, 
+        price: this.updateProductForm.value.productprice,
+        category: this.updateProductForm.value.productcategory,
+       
       };
-
-      console.log(this.productName);
+  
+    }
 
       this.firestore.collection('products', ref => ref.where('name', '==', this.productName)).get()
         .subscribe(querySnapshot => {
@@ -77,7 +97,8 @@ export class UpdateProductComponent implements OnInit {
           });
         });
     }
-  }
+  
+
 
   async onFileChange(event: any) {
     const file = event.target.files[0];
