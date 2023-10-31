@@ -16,16 +16,16 @@
             <h3>{{ product.name }}</h3>
 
             <div class="price">
-                <span> {{product.price}}$</span>
+                <span> {{product.price}}$ /kg</span>
             </div>
 
             <div class="quantity">
                 <span>quantity : </span>
-                <input type="number" min="1" max="1000">
-                <span>/kg</span>
+                <input [(ngModel)]="product.selectedQuantity" type="number" min="1" max="1000">
+                <span>kg</span>
             </div>
 
-            <a href="#" class="btn">add to cart</a>
+            <a (click)="addToCart(product, product.selectedQuantity)" class="btn">add to cart</a>
             <a *ngIf="isAdmin" (click)="prepareUpdate(product.name, product.photo, product.price, product.category)" class="btn1">update</a>
             <a *ngIf="isAdmin" (click)="deleteProduct(product)" class="btn2">delete</a>
 
