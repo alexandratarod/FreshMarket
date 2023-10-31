@@ -1,1 +1,28 @@
 <app-header></app-header>
+<h1 class="heading"> shopping <span>cart</span></h1>
+<div class="box-container">
+  <div *ngFor="let item of cartItems" class="box">
+    <img [src]="item.product.photo" alt="{{ item.product.name }}">
+    <h3>{{ item.product.name }}</h3>
+
+    <div class="price">
+      <span>{{ item.product.price }}$ /kg</span>
+    </div>
+
+    <div class="quantity">
+      <span>quantity : </span>
+      <input type="number" min="1" max="1000" [value]="item.quantity" [(ngModel)]="item.quantity" (ngModelChange)="editQuantity(item)">
+      <span>kg</span>
+    </div>
+
+    <a (click)="editQuantity(item)" class="btn1">edit</a>
+    <a (click)="removeFromCart(item)" class="btn2">remove</a>
+  </div>
+</div>
+<div class="place-order">
+
+    <a (click)="emptyCart()" class="btn2">Empty cart</a>
+    <a  class="btn">Place order</a>
+
+</div>
+

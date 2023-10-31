@@ -82,6 +82,7 @@ const appRoutes: Routes = [
     UpdateProductComponent,
     
     
+    
 
   ],
   imports: [
@@ -97,7 +98,8 @@ const appRoutes: Routes = [
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
     FirestoreModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    FormsModule,
    
     
   ],
