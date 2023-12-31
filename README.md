@@ -1,5 +1,5 @@
 
-# PW_Tarod_Alexandra_online_store
+# FreshMarket
 
 This is an online store for food and beverages.
 
