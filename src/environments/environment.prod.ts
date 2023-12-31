@@ -1,13 +1,12 @@
 export const environment = {
     production : true,
     firebaseConfig: {
-        apiKey: "AIzaSyDhxtTxqTLaynMXt-BTE2bZfLHU_z-SUJk",
-        authDomain: "freshmarket-1453b.firebaseapp.com",
-        databaseURL: "https://freshmarket-1453b-default-rtdb.firebaseio.com",
-        projectId: "freshmarket-1453b",
-        storageBucket: "freshmarket-1453b.appspot.com",
-        messagingSenderId: "525634027927",
-        appId: "1:525634027927:web:bd9abb452709fae26344d2",
-        measurementId: "G-FBN4FH7PRV"
+        apiKey: "AIzaSyAsKes7lDktx_pZoHkgQsy-3g88jDh7R7c",
+        authDomain: "freshmarket-92171.firebaseapp.com",
+        projectId: "freshmarket-92171",
+        storageBucket: "freshmarket-92171.appspot.com",
+        messagingSenderId: "505960810091",
+        appId: "1:505960810091:web:46c65f864bf2fea91d932e",
+        measurementId: "G-VRNY8WB9J0"
     },
   };
