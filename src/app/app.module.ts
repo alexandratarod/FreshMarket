@@ -32,6 +32,7 @@ import { AngularFireStorageModule} from '@angular/fire/compat/storage';
 import { UpdateCategoryComponent } from './update-category/update-category.component';
 import { CreateProductComponent } from './create-product/create-product.component';
 import { UpdateProductComponent } from './update-product/update-product.component';
+import { ContactComponent } from './contact/contact.component';
 
 
 
@@ -55,6 +56,7 @@ const appRoutes: Routes = [
     {path:'update-category-component', component:UpdateCategoryComponent},
     {path:'create-product', component:CreateProductComponent},
     {path:'update-product-component', component:UpdateProductComponent},
+    {path: 'contact', component:ContactComponent}
    
 
   
@@ -80,6 +82,7 @@ const appRoutes: Routes = [
     UpdateCategoryComponent,
     CreateProductComponent,
     UpdateProductComponent,
+    ContactComponent
     
     
     
